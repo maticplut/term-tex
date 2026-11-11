@@ -1,4 +1,4 @@
-# latex-kitty
+# term-tex
 
 A Claude Code mod that shows the math in Claude's replies as typeset
 equations in the [kitty](https://sw.kovidgoyal.net/kitty/) terminal.
@@ -36,13 +36,13 @@ sudo pacman -S texlive-bin texlive-basic texlive-latex texlive-latexrecommended 
 At the prompt of a Claude Code terminal session:
 
 ```
-/plugin install latex-kitty --marketplace maticplut/latex-kitty
+/plugin install term-tex --marketplace maticplut/term-tex
 ```
 
 From a shell:
 
 ```sh
-claude plugin install latex-kitty --marketplace maticplut/latex-kitty
+claude plugin install term-tex --marketplace maticplut/term-tex
 ```
 
 Answer `y` to add the marketplace, then pick a scope.
@@ -74,7 +74,7 @@ and `dvipng` turns it into a PNG at the resolution that matches the terminal's
 cell height. ImageMagick pads the image to whole cells. The mod sends the
 image to the terminal through the kitty graphics protocol.
 
-Images are cached in `~/.cache/latex-kitty/`, one per formula, color, size
+Images are cached in `~/.cache/term-tex/`, one per formula, color, size
 and cell size. Each zoom level compiles once.
 
 ## Security

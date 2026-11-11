@@ -1,5 +1,5 @@
 {
-  "name": "latex-kitty",
+  "name": "term-tex",
   "version": "0.1.1",
   "description": "Draws display math in Claude's replies as images in kitty, and simple inline math as Unicode",
   "types": "./types/index.d.ts",
@@ -18,7 +18,7 @@
     }
   },
   "license": "MIT",
-  "repository": "https://github.com/maticplut/latex-kitty",
+  "repository": "https://github.com/maticplut/term-tex",
   "author": {
     "name": "Matic Plut"
   }

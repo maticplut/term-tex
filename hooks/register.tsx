@@ -5,11 +5,11 @@ import { inlineToUnicode, split } from './parse'
 // Draws Claude's replies in the terminal with display math ($$...$$, \[...\],
 // equation/align/gather/multline) as images, through kitty's graphics
 // protocol. The local latex and dvipng typeset each formula into a PNG,
-// cached in ~/.cache/latex-kitty/. Inline math becomes Unicode where it can.
+// cached in ~/.cache/term-tex/. Inline math becomes Unicode where it can.
 
 // Goes up as compiles finish; replies waiting on a formula read it, so a
 // write redraws them.
-const version = atom({ plugin: 'latex-kitty', key: 'version' } as const, 0)
+const version = atom({ plugin: 'term-tex', key: 'version' } as const, 0)
 
 // Cell size in screen pixels. It changes when kitty zooms, so it is read
 // from the terminal (see CELL_PROBE); this is used until then, or if that fails.
@@ -98,8 +98,8 @@ export const register: Register = (on, options) => {
 
   on('session.start', async ($, e, next) => {
     tools = await findTools($)
-    if (!tools) $.ui.log('latex-kitty: latex, dvipng, magick or bwrap (bubblewrap) not found, so display math stays as TeX')
-    else if (!tools.python) $.ui.log('latex-kitty: python3 not found, so equations are drawn for 8×16 px cells')
+    if (!tools) $.ui.log('term-tex: latex, dvipng, magick or bwrap (bubblewrap) not found, so display math stays as TeX')
+    else if (!tools.python) $.ui.log('term-tex: python3 not found, so equations are drawn for 8×16 px cells')
     wantProbe = true
     $.clock.every(100, () => pump($, color))
     return next(e)
@@ -298,7 +298,7 @@ async function findTools($: Engine): Promise<Tools | null> {
   }
   const [latex, dvipng, magick, rm, bwrap, python] = await Promise.all(['latex', 'dvipng', 'magick', 'rm', 'bwrap', 'python3'].map(find))
   if (!home || !latex || !dvipng || !magick || !rm || !bwrap) return null
-  return { latex, dvipng, magick, rm, bwrap, python: python ?? null, cacheDir: `${home}/.cache/latex-kitty` }
+  return { latex, dvipng, magick, rm, bwrap, python: python ?? null, cacheDir: `${home}/.cache/term-tex` }
 }
 
 // The terminal's cell size in pixels, or null where it does not say

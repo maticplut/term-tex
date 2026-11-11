@@ -4,6 +4,6 @@ export type CompileVersion = number
 
 declare module 'claude-code' {
   interface PluginState {
-    'latex-kitty': { version: CompileVersion }
+    'term-tex': { version: CompileVersion }
   }
 }
